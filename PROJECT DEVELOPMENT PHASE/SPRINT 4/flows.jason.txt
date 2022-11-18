@@ -1,0 +1,139 @@
+[
+    {
+        "id": "6ed1189c17ed0439",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ce1790a002f55f3a",
+        "type": "ibmiot in",
+        "z": "6ed1189c17ed0439",
+        "authentication": "apiKey",
+        "apiKey": "bf9996433728395e",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "BIN1ID",
+        "applicationId": "",
+        "deviceType": "BIN1",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 250,
+        "y": 180,
+        "wires": [
+            [
+                "b678812da97d9d1a",
+                "f720c62cad238799",
+                "35b263513ea4f373"
+            ]
+        ]
+    },
+    {
+        "id": "b678812da97d9d1a",
+        "type": "debug",
+        "z": "6ed1189c17ed0439",
+        "name": "msg.payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 610,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "f720c62cad238799",
+        "type": "function",
+        "z": "6ed1189c17ed0439",
+        "name": "Distance 1",
+        "func": "msg.payload = msg.payload.dist\nglobal.set('d',msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 220,
+        "wires": [
+            [
+                "5dcbaf252dc78b06",
+                "b678812da97d9d1a"
+            ]
+        ]
+    },
+    {
+        "id": "35b263513ea4f373",
+        "type": "function",
+        "z": "6ed1189c17ed0439",
+        "name": "LOAD cell 1",
+        "func": "msg.payload =msg. payload.load\nglobal.set('l', msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 430,
+        "y": 300,
+        "wires": [
+            [
+                "b7ac8ba401c6cab8"
+            ]
+        ]
+    },
+    {
+        "id": "5dcbaf252dc78b06",
+        "type": "ui_gauge",
+        "z": "6ed1189c17ed0439",
+        "name": "",
+        "group": "f3b64a4198b3c46c",
+        "order": 1,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "Distance 1",
+        "label": "Cm",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "className": "",
+        "x": 710,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "b7ac8ba401c6cab8",
+        "type": "ui_gauge",
+        "z": "6ed1189c17ed0439",
+        "name": "",
+        "group": "f3b64a4198b3c46c",
+        "order": 2,
+        "width": 4,
+        "height": 4,
+        "gtype": "gage",
+        "title": "LOAD CELL 1",
+        "label": "KG",
